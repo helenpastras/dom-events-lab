@@ -25,20 +25,21 @@ const display = document.querySelector('.display');
 buttons.forEach((button) => {
   button.addEventListener('click', (event) => {
    const buttonText = button.textContent;
+   console.dir(buttonText);
 
       if (event.target.classList.contains('number')) {
-        num1 += buttonText;
-        display.value = num1
+        num1 = buttonText;
+        display.textContent = num1
     } else if (event.target.classList.contains('operator')){
           if (num1 !== '') {
             operator = buttonText;
-          display.value = operator;
+          display.textContent = operator;
           }
     } else if (event.target.classList.contains('clear')){
           num1 = '';
           operator = null;
-          display.value = ''; 
-    }
+          display.textContent = ''; 
+    }console.dir(buttonText)
   })
 });
 
@@ -66,13 +67,13 @@ const init = () => {
 console.log('it loaded');
 } 
 
-const calculate = () =>{
+// const calculate = () =>{
 
-}
+// }
 
 
 function updateDisplay() {
-    display.value = currentInput;
+    display.value = num1;
 }
 
 function appendNumber(number) {
