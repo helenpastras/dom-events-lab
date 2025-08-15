@@ -11,7 +11,7 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*-------------------------------- Variables --------------------------------*/
-// let resultTotal;
+
 let num1 = '';
 let num2 = '';
 let operator = null;
@@ -39,7 +39,8 @@ buttons.forEach((button) => {
           if (num1 !== '') {
             operator = buttonText;
           display.textContent = operator;
-    } else if (event.target.classList.contains('clear')){
+    }}
+     else if (event.target.classList.contains('clear')){
           num1 = '';
           num2 = '';
           operator = null;
@@ -53,7 +54,6 @@ buttons.forEach((button) => {
           switch (operator) {
               case '+':
                 result = v1 + v2;
-                console.log(num1)
               break;
               case '-':
                 result = v1 - v2;
@@ -65,16 +65,13 @@ buttons.forEach((button) => {
                 result = v1 / v2;
               break;
           }
-      
           display.textContent = result.toString();
           num1 = result.toString();
           num2 = '';
-          console.log(resultTotal)
         }
         }
-    }
-  })
-}); 
+    })
+  });
 
 /*-------------------------------- Functions --------------------------------*/
 
