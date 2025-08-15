@@ -11,10 +11,10 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*-------------------------------- Variables --------------------------------*/
-let resultTotal;
+// let resultTotal;
 let num1 = '';
 let num2 = '';
-let operation = null;
+let operator = null;
 
 /*------------------------ Cached Element References ------------------------*/
 const buttons = document.querySelectorAll('.button');
@@ -28,64 +28,79 @@ buttons.forEach((button) => {
    console.dir(buttonText);
 
       if (event.target.classList.contains('number')) {
-        num1 = buttonText;
+        if (operator === null){
+          num1 = buttonText;
         display.textContent = num1
-    } else if (event.target.classList.contains('operator')){
+        }else {
+        num2 += buttonText; 
+        display.textContent = num2;
+        }
+    }  else if (event.target.classList.contains('operator')){
           if (num1 !== '') {
             operator = buttonText;
           display.textContent = operator;
-          }
     } else if (event.target.classList.contains('clear')){
           num1 = '';
+          num2 = '';
           operator = null;
           display.textContent = ''; 
-    }console.dir(buttonText)
+    } else if (event.target.classList.contains('equals')){
+        if (num1 !== '' &&  operator !== null && num2 !== ''){
+          let result;
+          const v1 =parseFloat(num1);
+          const v2 = parseFloat(num2);
+
+          switch (operator) {
+              case '+':
+                result = v1 + v2;
+                console.log(num1)
+              break;
+              case '-':
+                result = v1 - v2;
+              break;
+              case '*':
+                result = v1 * v2;
+              break;
+              case '/':
+                result = v1 / v2;
+              break;
+          }
+      
+          display.textContent = result.toString();
+          num1 = result.toString();
+          num2 = '';
+          console.log(resultTotal)
+        }
+        }
+    }
   })
-});
-
-
-//   if (event.target.innerText === '*') {
-//     // Do something with this operator
-//     console.log("this logs the button clicked" , event.target.innerText);
-//     // Future logic to capture the button's value would go here...
-//   });
-// });
-
-
-// calculator.addEventListener('click', (event) => {
-//   // This log is for testing purposes to verify we're getting the correct value
-//   // You have to click a button to see this log
-//   console.log(event.target.innerText);
-
-  // Example
-
-// });
+}); 
 
 /*-------------------------------- Functions --------------------------------*/
 
-const init = () => {  
-console.log('it loaded');
-} 
+// const init = () => {  
+// console.log('it loaded');
+// } 
 
-// const calculate = () =>{
+// // // function calculate  = () =>{
 
+// // // }
+
+
+// // function updateDisplay() {
+// //     display.value = num1;
+// // }
+
+// function appendNumber(number) {
+//     if (number = true)
+//     num1 += number;
+//     updateDisplay();
 // }
 
-
-function updateDisplay() {
-    display.value = num1;
-}
-
-function appendNumber(number) {
-    if (number = true)
-    num1 += number;
-    updateDisplay();
-}
-
-const render = () => {
-    // resultTotal.textContent = `${result}`;
-    appendNumber();
-    console.log("it rendered");
-};
-init();
-render();
+// const render = () => {
+//     // resultTotal.textContent = `${result}`;
+//     appendNumber();
+//     console.log("it rendered");
+// };
+// init();
+// render();
